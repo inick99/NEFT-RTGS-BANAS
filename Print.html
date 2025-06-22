@@ -252,7 +252,7 @@
       setElementText('senderBranchAck', urlParams.get('senderBranch') || 'N/A');
       setElementText('senderAccountAck', urlParams.get('senderAccount') || 'N/A');
       setElementText('transactionTypeAck', urlParams.get('transactionType') || 'N/A');
-      setElementText('amountAck', isNaN(amount) ? '0.00' : amount.toFixed(2));
+      setElementText('amountAck', isNaN(amount) ? '0.00' : amount.toLocaleString('en-IN', {minimumFractionDigits: 2,maximumFractionDigits: 2}));
       setElementText('beneficiaryAccountAck', urlParams.get('beneficiaryAccount') || 'N/A');
       setElementText('bankNameAck', urlParams.get('bankName') || 'N/A');
       setElementText('ifsCodeAck', urlParams.get('ifsCode') || 'N/A');
