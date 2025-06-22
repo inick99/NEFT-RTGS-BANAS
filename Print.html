@@ -8,7 +8,7 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      margin: 20px;
+      margin: 5px;
       min-width: 915px; /* Minimum width for A4 paper at 96 DPI */
       overflow-x: auto;
       line-height: 1.6;
@@ -17,7 +17,7 @@
     .container {
       min-width: 100%;
       margin: auto;
-      padding: 20px;
+      padding: 5px;
       border: 1px solid #000; /* Solid black border */
       /* Removed box-shadow and background-color for black and white */
     }
@@ -94,8 +94,8 @@
         border: none;
         box-shadow: none;
         margin: 0;
-        padding: 1.5cm; /* Padding for print to ensure content fits within A4 margins */
-        max-width: 100%; /* Take full width within print margins */
+        padding: 1.0cm; /* Padding for print to ensure content fits within A4 margins */
+        min-width: 100%; /* Take full width within print margins */
       }
       .print-buttons {
         display: none !important; /* Hide buttons when printing, now with !important */
