@@ -68,6 +68,18 @@ function clearFormData() {
 
 function generatePrintForm() {
     const form = document.getElementById('rtgsForm');
+
+    // Get the beneficiary account numbers
+    const beneficiaryAccount = document.getElementById('beneficiaryAccount').value;
+    const beneficiaryAccountConfirm = document.getElementById('beneficiaryAccountConfirm').value;
+
+    // Validate if beneficiary accounts match
+    if (beneficiaryAccount !== beneficiaryAccountConfirm) {
+        alert('Beneficiary Account Number and Confirm Beneficiary Account Number do not match. Please re-enter.');
+        document.getElementById('beneficiaryAccount').focus(); // Focus on the first field for correction
+        return; // Stop the function execution
+    }
+
     const formData = new FormData(form);
     const queryString = new URLSearchParams();
 
@@ -77,5 +89,5 @@ function generatePrintForm() {
     }
 
     // Redirect to Print.HTML with the form data as query parameters
-    window.open('Print.html?' + queryString.toString(), '_blank');
+    window.open('Print.HTML?' + queryString.toString(), '_blank');
 }
