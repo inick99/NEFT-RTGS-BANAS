@@ -20,6 +20,12 @@ document.addEventListener('DOMContentLoaded', function() {
     if (clearFormButton) {
         clearFormButton.addEventListener('click', clearFormData);
     }
+    // ✅ Auto-uppercase all text input fields
+    document.querySelectorAll('input[type="text"]').forEach(input => {
+        input.addEventListener('input', function() {
+            this.value = this.value.toUpperCase();
+        });
+    });
 });
 
 function saveFormData(form) {
