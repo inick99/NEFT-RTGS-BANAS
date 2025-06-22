@@ -100,7 +100,7 @@
 <body>
   <div class="container">
     <h3>The Banaskantha Dist. Central Co-operative Bank Ltd. Palanpur</h3>
-    <h4>RTGS/NEFT/IMPS Transaction Request Form</h4>
+    <h5>RTGS/NEFT/IMPS Transaction Request Form</h5>
     <p>
       <strong>To,</strong><br />
       The Banaskantha Dist. Central Co-operative Bank Ltd.<br />
@@ -265,30 +265,51 @@
             printButtons.style.display = 'none';
         }
 
+        // Function to export the page content as a PDF
+    function exportPdf() {
+        const element = document.querySelector('.container'); // Select the main content container
+        const printButtons = document.querySelector('.print-buttons');
+
+        // Temporarily hide the print buttons before capturing the content
+        if (printButtons) {
+            printButtons.style.display = 'none';
+        }
+
         // Use html2canvas to render the HTML element as a canvas image
-        html2canvas(element, { scale: 2, useCORS: true }).then(canvas => {
+        // Increased scale for better resolution, set logging to false
+        html2canvas(element, { scale: 3, useCORS: true, logging: false }).then(canvas => {
             const imgData = canvas.toDataURL('image/png'); // Get image data as PNG
             const { jsPDF } = window.jspdf; // Get jsPDF instance from global scope
             const pdf = new jsPDF('p', 'mm', 'a4'); // Initialize PDF (portrait, mm, A4 size)
 
-            const imgWidth = 210; // A4 width in mm
-            const pageHeight = 297; // A4 height in mm
-            const imgHeight = canvas.height * imgWidth / canvas.width; // Calculate image height to maintain aspect ratio
-            let heightLeft = imgHeight; // Remaining height to be added to PDF
+            const A4_WIDTH_MM = 210;
+            const A4_HEIGHT_MM = 297;
+            const PDF_MARGIN_MM = 10; // Margin for the PDF content itself
 
-            let position = 0; // Y position on the PDF page
+            // Calculate usable area within PDF margins
+            const usableWidth = A4_WIDTH_MM - (2 * PDF_MARGIN_MM);
+            const usableHeight = A4_HEIGHT_MM - (2 * PDF_MARGIN_MM);
 
-            // Add the first page of the image to the PDF
-            pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
-            heightLeft -= pageHeight;
+            // Calculate the aspect ratio of the captured image
+            const imgAspectRatio = canvas.width / canvas.height;
 
-            // Add new pages if content overflows A4 height
-            while (heightLeft >= 0) {
-                position = heightLeft - imgHeight; // Adjust position for next page
-                pdf.addPage(); // Add a new blank page
-                pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight); // Add the image to the new page
-                heightLeft -= pageHeight;
+            let finalImgWidth = usableWidth;
+            let finalImgHeight = usableWidth / imgAspectRatio; // Scale height based on width
+
+            // If the calculated height is greater than usableHeight, scale based on height instead
+            if (finalImgHeight > usableHeight) {
+                finalImgHeight = usableHeight;
+                finalImgWidth = usableHeight * imgAspectRatio; // Scale width based on height
             }
+
+            // Center the image on the page
+            const xOffset = PDF_MARGIN_MM + (usableWidth - finalImgWidth) / 2;
+            const yOffset = PDF_MARGIN_MM + (usableHeight - finalImgHeight) / 2;
+
+
+            // Add the image to the PDF, scaled to fit one page
+            // No need for multi-page logic as we're scaling to fit
+            pdf.addImage(imgData, 'PNG', xOffset, yOffset, finalImgWidth, finalImgHeight);
 
             pdf.save('RTGS_NEFT_Form.pdf'); // Save the generated PDF
 
