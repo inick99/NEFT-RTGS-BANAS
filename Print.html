@@ -202,20 +202,20 @@
 
       // Populate Remitter Details
       setElementText('senderAccountPrint', urlParams.get('senderAccount') || 'N/A');
-      setElementText('accountHolderPrint', urlParams.get('accountHolder') || 'N/A');
+      setElementText('accountHolderPrint', urlParams.get('accountHolder') || 'N/A').toUpperCase());
       setElementText('mobilenumberPrint', urlParams.get('mobilenumber') || 'N/A');
-      setElementText('senderBranchPrint', urlParams.get('senderBranch') || 'N/A');
+      setElementText('senderBranchPrint', urlParams.get('senderBranch') || 'N/A').toUpperCase());
       setElementText('senderAccountTypePrint', urlParams.get('senderAccountType') || 'N/A');
 
       // Populate Beneficiary Details
-      setElementText('payeeNamePrint', urlParams.get('payeeName') || 'N/A');
-      setElementText('bankNamePrint', urlParams.get('bankName') || 'N/A');
-      setElementText('branchNamePrint', urlParams.get('branchName') || 'N/A');
-      setElementText('ifsCodePrint', urlParams.get('ifsCode') || 'N/A');
+      setElementText('payeeNamePrint', urlParams.get('payeeName') || 'N/A').toUpperCase());
+      setElementText('bankNamePrint', urlParams.get('bankName') || 'N/A').toUpperCase());
+      setElementText('branchNamePrint', urlParams.get('branchName') || 'N/A').toUpperCase());
+      setElementText('ifsCodePrint', urlParams.get('ifsCode') || 'N/A').toUpperCase());
       setElementText('beneficiaryAccountPrint', urlParams.get('beneficiaryAccount') || 'N/A');
       setElementText('beneficiaryAccountConfirmPrint', urlParams.get('beneficiaryAccountConfirm') || 'N/A');
       setElementText('accountTypePrint', urlParams.get('accountType') || 'N/A');
-      setElementText('messagePrint', urlParams.get('message') || 'N/A');
+      setElementText('messagePrint', urlParams.get('message') || 'N/A').toUpperCase());
 
       // Handle Amount and convert to words
       const amount = parseFloat(urlParams.get('amount'));
@@ -248,14 +248,14 @@
       }
 
       // Populate Customer Acknowledgement Slip
-      setElementText('senderBranchAck', urlParams.get('senderBranch') || 'N/A');
+      setElementText('senderBranchAck', urlParams.get('senderBranch') || 'N/A').toUpperCase());
       setElementText('senderAccountAck', urlParams.get('senderAccount') || 'N/A');
       setElementText('transactionTypeAck', urlParams.get('transactionType') || 'N/A');
       setElementText('amountAck', isNaN(amount) ? '0.00' : amount.toLocaleString('en-IN', {minimumFractionDigits: 2,maximumFractionDigits: 2}));
       setElementText('beneficiaryAccountAck', urlParams.get('beneficiaryAccount') || 'N/A');
-      setElementText('bankNameAck', urlParams.get('bankName') || 'N/A');
-      setElementText('ifsCodeAck', urlParams.get('ifsCode') || 'N/A');
-      setElementText('payeeNameAck', urlParams.get('payeeName') || 'N/A');
+      setElementText('bankNameAck', urlParams.get('bankName') || 'N/A').toUpperCase());
+      setElementText('ifsCodeAck', urlParams.get('ifsCode') || 'N/A').toUpperCase());
+      setElementText('payeeNameAck', urlParams.get('payeeName') || 'N/A').toUpperCase());
 
       // Set current date
       const today = new Date();
