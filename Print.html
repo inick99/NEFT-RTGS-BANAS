@@ -221,7 +221,11 @@
       // Handle Amount and convert to words
       const amount = parseFloat(urlParams.get('amount'));
       if (!isNaN(amount)) {
-        setElementText('amountPrint', amount.toFixed(2)); // Display amount with 2 decimal places
+        const formattedAmount = amount.toLocaleString('en-IN', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        });
+        setElementText('amountPrint', formattedAmount); // Display amount with 2 decimal places
 
         // Instantiate ToWords and convert
         // Ensure ToWords is defined in the global scope (as handled in ToWords.js)
