@@ -35,18 +35,17 @@
         background-color: #fff; /* White background for headers */
         font-weight: bold;
     }
-    h1, h2, h3 {
+    h1, h2, h3 { /* General styles for headings */
       text-align: center;
       margin-bottom: 15px;
       color: #000; /* Black headings */
     }
-    h1 { font-size: 1.8em; }
-    h2 { font-size: 1.5em; }
-    h3 { font-size: 1.2em; border-bottom: 1px solid #000; padding-bottom: 5px; } /* Solid black bottom border for h3 */
+    h1 { font-size: 1.8em; } /* Specific size for H1 */
+    h2 { font-size: 1.5em; } /* Specific size for H2 */
+    h3 { font-size: 1.2em; border-bottom: 1px solid #000; padding-bottom: 5px; } /* H3 with border */
 
     .signature-box {
       margin-top: 30px;
-      /* Reverted to inline-block for original layout style */
       display: block;
       text-align: center; /* Center the signatures if they stack */
     }
@@ -79,6 +78,7 @@
       body {
         margin: 0;
         padding: 0;
+        -webkit-print-color-adjust: exact; /* Ensures backgrounds and colors are printed */
       }
       .container {
         border: none;
@@ -99,8 +99,8 @@
 </head>
 <body>
   <div class="container">
-    <h3>The Banaskantha Dist. Central Co-operative Bank Ltd. Palanpur</h3>
-    <h5>RTGS/NEFT/IMPS Transaction Request Form</h5>
+    <h1>The Banaskantha Dist. Central Co-operative Bank Ltd. Palanpur</h1>
+    <h2>RTGS/NEFT/IMPS Transaction Request Form</h2>
     <p>
       <strong>To,</strong><br />
       The Banaskantha Dist. Central Co-operative Bank Ltd.<br />
@@ -251,21 +251,11 @@
       const today = new Date();
       const dd = String(today.getDate()).padStart(2, '0');
       const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-      const yyyy = today.getFullYear();
+      const yyyy = today.getFullYear(); // Corrected variable name
       setElementText('currentDate', `${dd}-${mm}-${yyyy}`);
     });
 
     // Function to export the page content as a PDF
-    function exportPdf() {
-        const element = document.querySelector('.container'); // Select the main content container
-        const printButtons = document.querySelector('.print-buttons');
-
-        // Temporarily hide the print buttons before capturing the content
-        if (printButtons) {
-            printButtons.style.display = 'none';
-        }
-
-        // Function to export the page content as a PDF
     function exportPdf() {
         const element = document.querySelector('.container'); // Select the main content container
         const printButtons = document.querySelector('.print-buttons');
@@ -308,7 +298,6 @@
 
 
             // Add the image to the PDF, scaled to fit one page
-            // No need for multi-page logic as we're scaling to fit
             pdf.addImage(imgData, 'PNG', xOffset, yOffset, finalImgWidth, finalImgHeight);
 
             pdf.save('RTGS_NEFT_Form.pdf'); // Save the generated PDF
