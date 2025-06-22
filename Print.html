@@ -114,7 +114,7 @@
       <strong>Date:</strong> <span id="currentDate"></span>
     </p>
 
-    <p>Please remit a sum of <strong>₹ <span id="amountPrint"></span> (<span id="amountWordsPrint"></span>)</strong> as per details given below and debit the amount to my/our account.</p>
+    <p>Please remit a sum of <strong>₹ <span id="amountPrint"></span> (<span id="amountWordsPrint"></span>)</strong> via <strong><span id="transactionTypePrint"></span></strong> as per details given below and debit the amount to my/our account.</p>
 
     <table>
       <tr>
@@ -201,6 +201,7 @@
       }
 
       // Populate Remitter Details
+      setElementText('transactionTypePrint', urlParams.get('transactionType') || 'N/A');
       setElementText('senderAccountPrint', urlParams.get('senderAccount') || 'N/A');
       setElementText('accountHolderPrint', urlParams.get('accountHolder') || 'N/A');
       setElementText('mobilenumberPrint', urlParams.get('mobilenumber') || 'N/A');
