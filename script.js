@@ -89,5 +89,5 @@ function generatePrintForm() {
     }
 
     // Redirect to Print.HTML with the form data as query parameters
-    window.open('Print.HTML?' + queryString.toString(), '_blank');
+    window.open('Print.html?' + queryString.toString(), '_blank');
 }
