@@ -9,12 +9,14 @@
     body {
       font-family: Arial, sans-serif;
       margin: 20px;
+      min-width: 794px; /* Minimum width for A4 paper at 96 DPI */
+      overflow-x: auto;
       line-height: 1.6;
       color: #000; /* Black text for classic look */
     }
     .container {
       width: 100%;
-      max-width: 800px; /* Reverted to 800px for closer match to original */
+      max-width: 794px;
       margin: auto;
       padding: 20px;
       border: 1px solid #000; /* Solid black border */
@@ -79,6 +81,8 @@
       body {
         margin: 0;
         padding: 0;
+        min-width: 794px; /* Minimum width for A4 paper at 96 DPI */
+        overflow-x: auto;
         -webkit-print-color-adjust: exact; /* Ensures backgrounds and colors are printed */
       }
       table {
