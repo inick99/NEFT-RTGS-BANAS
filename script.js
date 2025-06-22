@@ -87,7 +87,16 @@ function generatePrintForm() {
         document.getElementById('beneficiaryAccount').focus(); // Focus on the first field for correction
         return; // Stop the function execution
     }
+    // ✅ Check RTGS amount condition
+    const amount = parseFloat(document.getElementById('amount').value);
+    const transactionType = form.querySelector('input[name="transactionType"]:checked').value;
 
+    if (transactionType === 'RTGS' && amount < 200000) {
+        alert("Can't do RTGS Less than 2 Lac Amount!");
+        document.getElementById('amount').focus();
+        return;
+    }
+    
     const formData = new FormData(form);
     const queryString = new URLSearchParams();
 
