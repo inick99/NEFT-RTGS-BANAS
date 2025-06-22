@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('rtgsForm');
-    const submitFormAndPrintButton = document.getElementById('submitFormAndPrint');
     const clearFormButton = document.getElementById('clearForm');
 
     // Load form data from local storage on page load
@@ -11,10 +10,13 @@ document.addEventListener('DOMContentLoaded', function() {
         saveFormData(form);
     });
 
-    if (submitFormAndPrintButton) {
-        submitFormAndPrintButton.addEventListener('click', generatePrintForm);
-    }
+    // Attach generatePrintForm to the form's submit event
+    form.addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent actual form submission
+        generatePrintForm();    // Your custom function to handle form logic/printing
+    });
 
+    // Clear form and local storage when "Clear Form" button is clicked
     if (clearFormButton) {
         clearFormButton.addEventListener('click', clearFormData);
     }
