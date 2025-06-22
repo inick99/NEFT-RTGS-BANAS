@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RTGS/NEFT/IMPS Transaction Request Form - Print</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" xintegrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      line-height: 1.6;
+      color: #000; /* Black text for classic look */
+    }
+    .container {
+      width: 100%;
+      max-width: 800px; /* Reverted to 800px for closer match to original */
+      margin: auto;
+      padding: 20px;
+      border: 1px solid #000; /* Solid black border */
+      /* Removed box-shadow and background-color for black and white */
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+      margin-bottom: 20px;
+    }
+    th, td {
+      border: 1px solid #000; /* Solid black table borders */
+      padding: 8px; /* Original padding */
+      text-align: left;
+    }
+    th {
+        background-color: #fff; /* White background for headers */
+        font-weight: bold;
+    }
+    h1, h2, h3 {
+      text-align: center;
+      margin-bottom: 15px;
+      color: #000; /* Black headings */
+    }
+    h1 { font-size: 1.8em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.2em; border-bottom: 1px solid #000; padding-bottom: 5px; } /* Solid black bottom border for h3 */
+
+    .signature-box {
+      margin-top: 30px;
+      /* Reverted to inline-block for original layout style */
+      display: block;
+      text-align: center; /* Center the signatures if they stack */
+    }
+    .signature-box div {
+      display: inline-block; /* Inline-block for side-by-side if space allows */
+      width: 30%; /* Original width */
+      min-width: 180px; /* Ensure a minimum width */
+      padding: 5px;
+      border-top: 1px solid #000; /* Solid black line for signature */
+      text-align: center;
+      font-size: 0.9em;
+      margin: 0 10px; /* Spacing between signatures */
+    }
+    .footer {
+      margin-top: 30px; /* Original margin-top */
+      border-top: 1px dashed #000; /* Dashed black border */
+      padding-top: 10px; /* Original padding */
+      text-align: center;
+      font-size: 0.85em; /* Retained for readability */
+      color: #000; /* Black text */
+    }
+    .print-buttons {
+      text-align: center;
+      margin-top: 30px;
+      padding-bottom: 20px;
+    }
+
+    /* Print Specific Styles for A4 Portrait */
+    @media print {
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        border: none;
+        box-shadow: none;
+        margin: 0;
+        padding: 1.5cm; /* Padding for print to ensure content fits within A4 margins */
+        max-width: 100%; /* Take full width within print margins */
+      }
+      .print-buttons {
+        display: none !important; /* Hide buttons when printing, now with !important */
+      }
+      @page {
+        size: A4 portrait; /* Set page size to A4 portrait */
+        margin: 1cm; /* Margins for the print page */
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Banaskantha Dist. Central Co-operative Bank Ltd. Palanpur</h1>
+    <h2>RTGS/NEFT/IMPS Transaction Request Form</h2>
+    <p>
+      <strong>To,</strong><br />
+      The Banaskantha Dist. Central Co-operative Bank Ltd.<br />
+      <strong>Branch Name:</strong> <span id="senderBranchPrint"></span><br />
+      <strong>Date:</strong> <span id="currentDate"></span>
+    </p>
+
+    <p>Please remit a sum of <strong>₹ <span id="amountPrint"></span> (<span id="amountWordsPrint"></span>)</strong> as per details given below and debit the amount to my/our account.</p>
+
+    <table>
+      <tr>
+        <th colspan="2" class="text-center">Beneficiary Details</th>
+      </tr>
+      <tr>
+        <td>Beneficiary Name</td>
+        <td id="payeeNamePrint"></td>
+      </tr>
+      <tr>
+        <td>Beneficiary Account Number</td>
+        <td id="beneficiaryAccountPrint"></td>
+      </tr>
+      <tr>
+        <td>Beneficiary Account Number (Again)</td>
+        <td id="beneficiaryAccountConfirmPrint"></td>
+      </tr>
+      <tr>
+        <td>Beneficiary Bank Name & Branch</td>
+        <td><span id="bankNamePrint"></span>, <span id="branchNamePrint"></span></td>
+      </tr>
+      <tr>
+        <td>Beneficiary Bank IFSC Code</td>
+        <td id="ifsCodePrint"></td>
+      </tr>
+      <tr>
+        <td>Details / Purpose of Transfer</td>
+        <td id="messagePrint"></td>
+      </tr>
+    </table>
+
+    <h3>My / Our Details (Remitter)</h3>
+    <table>
+      <tr>
+        <td>Remitter (Applicant) Name</td>
+        <td id="accountHolderPrint"></td>
+      </tr>
+      <tr>
+        <td>Remitter Account Number & Type</td>
+        <td>A/C No. <span id="senderAccountPrint"></span> | A/C Type: <span id="senderAccountTypePrint"></span></td>
+      </tr>
+      <tr>
+        <td>Mobile Number of Remitter (Mandatory)</td>
+        <td id="mobilenumberPrint"></td>
+      </tr>
+    </table>
+
+    <h3>Signatures</h3>
+    <div class="signature-box">
+      <div>1st Signatory: _____________________</div>
+      <div>2nd Signatory: _____________________</div>
+      <div>3rd Signatory: _____________________</div>
+    </div>
+
+    <div class="footer">
+      <p><strong>Customer Acknowledgement Slip</strong></p>
+      <p>Received Transaction Request from <span id="senderBranchAck"></span> A/C No. <span id="senderAccountAck"></span> for <span id="transactionTypeAck"></span> in the sum of ₹ <span id="amountAck"></span> to be credited to Account Number <span id="beneficiaryAccountAck"></span>, <span id="bankNameAck"></span>, IFSC Code <span id="ifsCodeAck"></span>, Beneficiary Name <span id="payeeNameAck"></span>.</p>
+      <p>Signature: ___________________ | E Code: ___________________</p>
+    </div>
+  </div>
+
+  <div class="print-buttons">
+    <button type="button" class="btn btn-success btn-lg" onclick="exportPdf()">Export as PDF</button>
+    <button type="button" class="btn btn-info btn-lg ms-3" onclick="window.print()">Print This Page</button>
+  </div>
+
+  <!-- Load PDF generation libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+  <script src="en-IN.js"></script>
+  <script src="ToWords.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Get URL parameters
+      const urlParams = new URLSearchParams(window.location.search);
+
+      // Function to set text content of an element by ID
+      function setElementText(id, value) {
+        const element = document.getElementById(id);
+        if (element) {
+          element.innerText = value;
+        }
+      }
+
+      // Populate Remitter Details
+      setElementText('senderAccountPrint', urlParams.get('senderAccount') || 'N/A');
+      setElementText('accountHolderPrint', urlParams.get('accountHolder') || 'N/A');
+      setElementText('mobilenumberPrint', urlParams.get('mobilenumber') || 'N/A');
+      setElementText('senderBranchPrint', urlParams.get('senderBranch') || 'N/A');
+      setElementText('senderAccountTypePrint', urlParams.get('senderAccountType') || 'N/A');
+
+      // Populate Beneficiary Details
+      setElementText('payeeNamePrint', urlParams.get('payeeName') || 'N/A');
+      setElementText('bankNamePrint', urlParams.get('bankName') || 'N/A');
+      setElementText('branchNamePrint', urlParams.get('branchName') || 'N/A');
+      setElementText('ifsCodePrint', urlParams.get('ifsCode') || 'N/A');
+      setElementText('beneficiaryAccountPrint', urlParams.get('beneficiaryAccount') || 'N/A');
+      setElementText('beneficiaryAccountConfirmPrint', urlParams.get('beneficiaryAccountConfirm') || 'N/A');
+      setElementText('accountTypePrint', urlParams.get('accountType') || 'N/A');
+      setElementText('messagePrint', urlParams.get('message') || 'N/A');
+
+      // Handle Amount and convert to words
+      const amount = parseFloat(urlParams.get('amount'));
+      if (!isNaN(amount)) {
+        setElementText('amountPrint', amount.toFixed(2)); // Display amount with 2 decimal places
+
+        // Instantiate ToWords and convert
+        // Ensure ToWords is defined in the global scope (as handled in ToWords.js)
+        if (typeof ToWords !== 'undefined') {
+            const toWords = new ToWords({
+                localeCode: 'en-IN',
+                converterOptions: {
+                    currency: true,
+                    ignoreDecimal: false
+                }
+            });
+            const words = toWords.convert(amount);
+            setElementText('amountWordsPrint', words);
+        } else {
+            console.error("ToWords library not loaded or not accessible.");
+            setElementText('amountWordsPrint', 'Error: Converter not available');
+        }
+      } else {
+        setElementText('amountPrint', '0.00');
+        setElementText('amountWordsPrint', 'Invalid Amount');
+      }
+
+      // Populate Customer Acknowledgement Slip
+      setElementText('senderBranchAck', urlParams.get('senderBranch') || 'N/A');
+      setElementText('senderAccountAck', urlParams.get('senderAccount') || 'N/A');
+      setElementText('transactionTypeAck', urlParams.get('transactionType') || 'N/A');
+      setElementText('amountAck', isNaN(amount) ? '0.00' : amount.toFixed(2));
+      setElementText('beneficiaryAccountAck', urlParams.get('beneficiaryAccount') || 'N/A');
+      setElementText('bankNameAck', urlParams.get('bankName') || 'N/A');
+      setElementText('ifsCodeAck', urlParams.get('ifsCode') || 'N/A');
+      setElementText('payeeNameAck', urlParams.get('payeeName') || 'N/A');
+
+      // Set current date
+      const today = new Date();
+      const dd = String(today.getDate()).padStart(2, '0');
+      const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+      const yyyy = today.getFullYear();
+      setElementText('currentDate', `${dd}-${mm}-${yyyy}`);
+    });
+
+    // Function to export the page content as a PDF
+    function exportPdf() {
+        const element = document.querySelector('.container'); // Select the main content container
+        const printButtons = document.querySelector('.print-buttons');
+
+        // Temporarily hide the print buttons before capturing the content
+        if (printButtons) {
+            printButtons.style.display = 'none';
+        }
+
+        // Use html2canvas to render the HTML element as a canvas image
+        html2canvas(element, { scale: 2, useCORS: true }).then(canvas => {
+            const imgData = canvas.toDataURL('image/png'); // Get image data as PNG
+            const { jsPDF } = window.jspdf; // Get jsPDF instance from global scope
+            const pdf = new jsPDF('p', 'mm', 'a4'); // Initialize PDF (portrait, mm, A4 size)
+
+            const imgWidth = 210; // A4 width in mm
+            const pageHeight = 297; // A4 height in mm
+            const imgHeight = canvas.height * imgWidth / canvas.width; // Calculate image height to maintain aspect ratio
+            let heightLeft = imgHeight; // Remaining height to be added to PDF
+
+            let position = 0; // Y position on the PDF page
+
+            // Add the first page of the image to the PDF
+            pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+            heightLeft -= pageHeight;
+
+            // Add new pages if content overflows A4 height
+            while (heightLeft >= 0) {
+                position = heightLeft - imgHeight; // Adjust position for next page
+                pdf.addPage(); // Add a new blank page
+                pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight); // Add the image to the new page
+                heightLeft -= pageHeight;
+            }
+
+            pdf.save('RTGS_NEFT_Form.pdf'); // Save the generated PDF
+
+            // Show the print buttons again after PDF generation
+            if (printButtons) {
+                printButtons.style.display = 'block';
+            }
+        }).catch(error => {
+            console.error("Error generating PDF:", error);
+            // Ensure buttons are re-shown even if there's an error
+            if (printButtons) {
+                printButtons.style.display = 'block';
+            }
+        });
+    }
+  </script>
+</body>
+</html>
