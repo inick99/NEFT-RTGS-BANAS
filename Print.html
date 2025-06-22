@@ -7,104 +7,88 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" xintegrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
   <style>
     body {
-      font-family: Arial, sans-serif;
-      margin: 5px;
-      min-width: 230mm; /* Minimum width for A4 paper at 96 DPI */
-      overflow-x: auto;
-      line-height: 1.6;
-      color: #000; /* Black text for classic look */
-    }
-    .container {
-      min-width: 100%;
-      margin: auto;
-      padding: 10px;
-      border: 1px solid #000; /* Solid black border */
-      /* Removed box-shadow and background-color for black and white */
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 0px;
-      margin-bottom: 0px;
-    }
-    th, td {
-      border: 1px solid #000; /* Solid black table borders */
-      padding: 2px; /* Original padding */
-      text-align: left;
-    }
-    th {
-        background-color: #fff; /* White background for headers */
-        font-weight: bold;
-    }
-    h1, h2, h3 { /* General styles for headings */
-      text-align: center;
-      margin-bottom: 10px;
-      color: #000; /* Black headings */
-    }
-    h1 { font-size: 1.2em; } /* Specific size for H1 */
-    h2 { font-size: 1.0em; } /* Specific size for H2 */
-    h3 { font-size: 0.6em; border-bottom: 1px solid #000; padding-bottom: 5px; } /* H3 with border */
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+  line-height: 1.4;
+  color: #000;
+}
 
-    .signature-box {
-      margin-top: 30px;
-      display: block;
-      text-align: center; /* Center the signatures if they stack */
-    }
-    .signature-box div {
-      display: inline-block; /* Inline-block for side-by-side if space allows */
-      width: 30%; /* Original width */
-      min-width: 180px; /* Ensure a minimum width */
-      padding: 5px;
-      border-top: 1px solid #000; /* Solid black line for signature */
-      text-align: center;
-      font-size: 0.9em;
-      margin: 0 10px; /* Spacing between signatures */
-    }
-    .signature-line {
-      border-bottom: 1px solid black;
-      height: 80px;
-    }
-    .footer {
-      margin-top: 30px; /* Original margin-top */
-      border-top: 1px dashed #000; /* Dashed black border */
-      padding-top: 10px; /* Original padding */
-      text-align: center;
-      font-size: 0.85em; /* Retained for readability */
-      color: #000; /* Black text */
-    }
-    .print-buttons {
-      text-align: center;
-      margin-top: 30px;
-      padding-bottom: 20px;
-    }
+.container {
+  padding: 10mm;
+  width: 190mm;
+  margin: 0 auto;
+}
 
-    /* Print Specific Styles for A4 Portrait */
-    @media print {
-      body {
-        margin: 0;
-        padding: 0;
-        min-width: 230mm;
-        overflow-x: auto;
-        -webkit-print-color-adjust: exact; /* Ensures backgrounds and colors are printed */
-      }
-      table {
-        min-width: 100%;
-      }
-      .container {
-        border: none;
-        box-shadow: none;
-        margin: 0;
-        padding: 1.0cm; /* Padding for print to ensure content fits within A4 margins */
-        min-width: 100%; /* Take full width within print margins */
-      }
-      .print-buttons {
-        display: none !important; /* Hide buttons when printing, now with !important */
-      }
-      @page {
-        size: A4 portrait; /* Set page size to A4 portrait */
-        margin: 2cm; /* Margins for the print page */
-      }
-    }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 8px 0;
+}
+
+th, td {
+  border: 1px solid #000;
+  padding: 3px 4px;
+  text-align: left;
+  vertical-align: top;
+}
+
+th {
+  background: #fff;
+  font-weight: bold;
+}
+
+h1, h2, h3 {
+  text-align: center;
+  margin: 6px 0;
+  color: #000;
+}
+
+h1 { font-size: 16px; }
+h2 { font-size: 14px; }
+h3 { font-size: 12px; border-bottom: 1px solid #000; padding-bottom: 3px; }
+
+.signature-line {
+  border-bottom: 1px solid black;
+  height: 60px;
+}
+
+.footer {
+  border-top: 1px dashed #000;
+  padding-top: 5px;
+  font-size: 11px;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.print-buttons {
+  text-align: center;
+  margin: 20px 0;
+}
+
+@media print {
+  body {
+    margin: 0;
+    padding: 0;
+    font-size: 11px;
+  }
+
+  .container {
+    width: auto;
+    margin: 0;
+    padding: 10mm;
+  }
+
+  .print-buttons {
+    display: none !important;
+  }
+
+  @page {
+    size: A4 portrait;
+    margin: 10mm;
+  }
+}
   </style>
 </head>
 <body>
