@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>RTGS/NEFT/IMPS Transaction Request Form - Print</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" xintegrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" xintegrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous"> -->
   <style>
     body {
   font-family: Arial, sans-serif;
@@ -54,7 +54,7 @@ h3 { font-size: 12px; border-bottom: 1px solid #000; padding-bottom: 3px; }
 
 .signature-line {
   border-bottom: 1px solid black;
-  height: 60px;
+  height: 40px;
 }
 
 .footer {
@@ -140,9 +140,6 @@ h3 { font-size: 12px; border-bottom: 1px solid #000; padding-bottom: 3px; }
         <td>Details / Purpose of Transfer</td>
         <td id="messagePrint"></td>
       </tr>
-    </table>
-    <p style=" margin: 0; padding: 0;"></p>
-    <table>
       <tr>
         <th colspan="2" class="text-center">My / Our Details (Remitter)</th>
       </tr>
@@ -166,8 +163,7 @@ h3 { font-size: 12px; border-bottom: 1px solid #000; padding-bottom: 3px; }
     <p style="text-align: justify; margin: 0; padding: 0;"><strong>4.</strong> If there is a holiday or closure at the center where the recipient branch is situated, the credit will be passed on to the beneficiary account on the next working day.</p>
     <p style="text-align: justify; margin: 0; padding: 0;"><strong>5.</strong> The RTGS/NEFT/IMPS customer hereby agrees and undertakes that he/she is aware of all the RTGS/NEFT/IMPS rules set by the RBI and will abide by all guidelines issued by the RBI or any other regulatory authorities, or as communicated by The B.K. Dist. Co-op. Bank Ltd., applicable to transactions related to RTGS/NEFT/IMPS, whether directly or indirectly.</p>
     <p style="text-align: justify; margin: 0; padding: 0;"><strong>6.</strong> These provisions shall always be subject to any rules, terms, conditions, and administrative guidelines issued by the RBI, which may be enforced from time to time in respect of the operation of RTGS/NEFT/IMPS accounts.</p>
-    <p style="margin: 0; padding: 0;"> </p>
-    <p style="text-align: justify; margin: 0; padding: 0;">The RTGS/NEFT/IMPS customer hereby agrees and undertakes to indemnify and keep indemnified The B.K. Dist. Co-op. Bank Ltd. from time to time against all losses, damages, costs (including legal fees), penalties, and consequences arising in connection with maintaining the said RTGS/NEFT/IMPS accounts or by virtue of The B.K. Dist. Co-op. Bank Ltd. acting for and on behalf of the RTGS/NEFT/IMPS customer in pursuance of this agreement.</p>
+    <p style="text-align: justify; margin: 0; padding: 0;"><strong style="visibility: hidden;""> __</strong> The RTGS/NEFT/IMPS customer hereby agrees and undertakes to indemnify and keep indemnified The B.K. Dist. Co-op. Bank Ltd. from time to time against all losses, damages, costs (including legal fees), penalties, and consequences arising in connection with maintaining the said RTGS/NEFT/IMPS accounts or by virtue of The B.K. Dist. Co-op. Bank Ltd. acting for and on behalf of the RTGS/NEFT/IMPS customer in pursuance of this agreement.</p>
 
     <table>
       <tr>
@@ -183,13 +179,44 @@ h3 { font-size: 12px; border-bottom: 1px solid #000; padding-bottom: 3px; }
         <td class="signature-line"></td>
         <td class="signature-line"></td>
       </tr>
+      <tr>
+        <th colspan="3" class="text-center">For Bank's Use Only</th>
+      </tr>
+      <tr>
+        <td>UTR No. / RRN</td>
+        <td colspan="2"></td>
+      </tr>
+      <tr class="signature-line">
+        <td>Transaction Inputted by</td>
+        <td>Sign:</td>
+        <td>P.F.No.:</td>
+      </tr>
+      <tr class="signature-line">
+        <td>Transaction Authorized by</td>
+        <td>Sign:</td>
+        <td>P.F.No.:</td>
+      </tr>
     </table>
 
-    <div class="footer">
-      <p><strong>Customer Acknowledgement Slip</strong></p>
-      <p>Received Transaction Request from <span id="senderBranchAck"></span> A/C No. <span id="senderAccountAck"></span> for <span id="transactionTypeAck"></span> in the sum of ₹ <span id="amountAck"></span> to be credited to Account Number <span id="beneficiaryAccountAck"></span>, <span id="bankNameAck"></span>, IFSC Code <span id="ifsCodeAck"></span>, Beneficiary Name <span id="payeeNameAck"></span>.</p>
-      <p>Signature: ___________________ | E Code: ___________________</p>
-    </div>
+    <table style="border-collapse: collapse; width: 100%; font-size: 11px; text-align: center; margin-top: 10px;" class="footer">
+      <tr>
+        <td colspan="3" style="border-top: 1px dashed #000; border-left: none; border-right: none; padding-top: 2px;">
+          <strong>Customer Acknowledgement Slip</strong>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="3" style="padding: 2px;">
+          Received Transaction Request from <span id="senderBranchAck"></span> A/C No. <span id="senderAccountAck"></span> for <span id="transactionTypeAck"></span> in the sum of ₹ <span id="amountAck"></span> to be credited to Account Number <span id="beneficiaryAccountAck"></span>, <span id="bankNameAck"></span>, IFSC Code <span id="ifsCodeAck"></span>, Beneficiary Name <span id="payeeNameAck"></span>.
+        </td>
+      </tr>
+      <!--
+      <tr>
+        <td>Signature:</td>
+        <td>E Code:</td>
+        <td></td>
+      </tr>
+      -->
+    </table>
   </div>
 
   <div class="print-buttons">
