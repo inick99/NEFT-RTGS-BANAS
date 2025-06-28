@@ -203,9 +203,9 @@
             <td style="border-bottom: 1px solid black; width: 33.33%;">P.F.No.:</td>
           </tr>
         </tbody>
-        </table>
+      </table>
 
-        <table style="border-collapse: collapse; width: 100%; font-size: 11px; text-align: center; margin-top: 15px;"
+      <table style="border-collapse: collapse; width: 100%; font-size: 11px; text-align: center; margin-top: 15px;"
           class="footer">
           <tr>
             <td colspan="3"
@@ -323,66 +323,58 @@
 
     // Function to export the page content as a PDF
     function exportPdf() {
-      const element = document.querySelector('.container');
+      const element = document.querySelector('.container'); // Select the main content container
       const printButtons = document.querySelector('.print-buttons');
 
+      // Temporarily hide the print buttons before capturing the content
       if (printButtons) {
         printButtons.style.display = 'none';
       }
 
-      // Save original styles
-      const originalWidth = element.style.width;
-      const originalTransform = element.style.transform;
-
-      // Force consistent width for capture
-      element.style.width = '800px';
-      element.style.transform = 'scale(1)';
-      element.style.transformOrigin = 'top left';
-
       // Use html2canvas to render the HTML element as a canvas image
       // Increased scale for better resolution, set logging to false
-        html2canvas(element, { scale: 3, useCORS: true, logging: false }).then(canvas => {
-        const imgData = canvas.toDataURL('image/png');
-        const { jsPDF } = window.jspdf;
-        const pdf = new jsPDF('p', 'mm', 'a4');
+      html2canvas(element, { scale: 3, useCORS: true, logging: false }).then(canvas => {
+        const imgData = canvas.toDataURL('image/png'); // Get image data as PNG
+        const { jsPDF } = window.jspdf; // Get jsPDF instance from global scope
+        const pdf = new jsPDF('p', 'mm', 'a4'); // Initialize PDF (portrait, mm, A4 size)
 
         const A4_WIDTH_MM = 210;
         const A4_HEIGHT_MM = 297;
-        const PDF_MARGIN_MM = 10;
+        const PDF_MARGIN_MM = 10; // Margin for the PDF content itself
 
+        // Calculate usable area within PDF margins
         const usableWidth = A4_WIDTH_MM - (2 * PDF_MARGIN_MM);
         const usableHeight = A4_HEIGHT_MM - (2 * PDF_MARGIN_MM);
 
+        // Calculate the aspect ratio of the captured image
         const imgAspectRatio = canvas.width / canvas.height;
 
         let finalImgWidth = usableWidth;
-        let finalImgHeight = usableWidth / imgAspectRatio;
+        let finalImgHeight = usableWidth / imgAspectRatio; // Scale height based on width
 
+        // If the calculated height is greater than usableHeight, scale based on height instead
         if (finalImgHeight > usableHeight) {
           finalImgHeight = usableHeight;
-          finalImgWidth = usableHeight * imgAspectRatio;
+          finalImgWidth = usableHeight * imgAspectRatio; // Scale width based on height
         }
 
+        // Center the image on the page
         const xOffset = PDF_MARGIN_MM + (usableWidth - finalImgWidth) / 2;
         const yOffset = PDF_MARGIN_MM + (usableHeight - finalImgHeight) / 2;
 
+
+        // Add the image to the PDF, scaled to fit one page
         pdf.addImage(imgData, 'PNG', xOffset, yOffset, finalImgWidth, finalImgHeight);
-        pdf.save('RTGS_NEFT_Form.pdf');
 
-        // Restore styles
-        element.style.width = originalWidth;
-        element.style.transform = originalTransform;
+        pdf.save('RTGS_NEFT_Form.pdf'); // Save the generated PDF
 
+        // Show the print buttons again after PDF generation
         if (printButtons) {
           printButtons.style.display = 'block';
         }
       }).catch(error => {
         console.error("Error generating PDF:", error);
-
-        // Restore styles in case of error too
-        element.style.width = originalWidth;
-        element.style.transform = originalTransform;
-
+        // Ensure buttons are re-shown even if there's an error
         if (printButtons) {
           printButtons.style.display = 'block';
         }
